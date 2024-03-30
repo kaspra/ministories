@@ -6,33 +6,21 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
 const PromptCardList = ({ data, handleTagClick }) => {
-  const [width, setWidth] = useState(window.innerWidth);
+  // const [width, setWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWidth(window.innerWidth);
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  return width < 450 ? (
-    <ImageList variant="masonry" cols={1} gap={12}>
-      {data.map((post) => (
-        <ImageListItem key={post.tag}>
-          <PromptCard
-            key={post.id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  ) : (
+  return (
     <ImageList variant="masonry" cols={3} gap={12}>
       {data.map((post) => (
         <ImageListItem key={post.tag}>
