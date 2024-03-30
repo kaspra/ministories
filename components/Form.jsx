@@ -21,10 +21,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
   return (
     <section className="w-full max-w-full flex-start flex-col">
-      <h1 className="head_text text-left">
+      <h1 className="head_text text-left px-4">
         <span className="blue_gradient">{type} Post</span>
       </h1>
-      <p className="desc text-left max-w-md">
+      <p className="desc text-left max-w-md px-4">
         {type} and share amazing stories with the world, and let your
         imagination run wild with MiniStories
       </p>
@@ -76,14 +76,12 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Field of Storie{" "}
-            <span className="font-normal">
-              (#adventure, #horrer, #kids, etc.)
-            </span>
+            <span className="font-normal">(adventure, horror, kids, etc.)</span>
           </span>
           <input
             type="text"
             value={post.tag}
-            placeholder="#Tag"
+            placeholder="Tag"
             required
             className="form_input"
             onChange={(e) => hashtagcreator(e.target.value)}
@@ -98,7 +96,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-1.5 text-sm custom_btn rounded-full text-white"
+            className="px-5 py-1.5 text-sm blue_btn rounded-full text-white"
           >
             {submitting ? `${type}ing...` : type}
           </button>

@@ -6,32 +6,52 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
 const PromptCardList = ({ data, handleTagClick }) => {
-  // const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setWidth(window.innerWidth);
-  //   };
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
 
-  //   window.addEventListener("resize", handleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
 
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   return (
-    <ImageList variant="masonry" cols={3} gap={12}>
-      {data.map((post) => (
-        <ImageListItem key={post.tag}>
-          <PromptCard
-            key={post.id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <>
+      {width < 800 ? (
+        <ImageList variant="masonry" cols={1} gap={12}>
+          {data.map((post) => (
+            <ImageListItem key={post.tag}>
+              <PromptCard
+                key={post.id}
+                post={post}
+                handleTagClick={handleTagClick}
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      ) : (
+        <ImageList variant="masonry" cols={3} gap={12}>
+          {data.map((post) => (
+            <ImageListItem key={post.tag}>
+              <PromptCard
+                key={post.id}
+                post={post}
+                handleTagClick={handleTagClick}
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      )}
+    </>
   );
 };
 
@@ -84,11 +104,11 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center flex-col pb-12">
-        <div className="flex w-full justify-center items-center">
+      <form className="relative w-full flex-center flex-col">
+        <div className="flex w-full justify-center items-center mb-16">
           <div className="search_input">
             <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
+              className="w-4 h-4 text-gray-500"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -108,19 +128,19 @@ const Feed = () => {
               value={searchText}
               onChange={handleSearchChange}
               required
-              className="border-none w-full focus:outline-none"
+              className="border-none placeholder:font-light placeholder:text-gray-400 w-full"
             />
           </div>
         </div>
+        {searchText ? (
+          <PromptCardList
+            data={searchedResults}
+            handleTagClick={handleTagClick}
+          />
+        ) : (
+          <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        )}
       </form>
-      {searchText ? (
-        <PromptCardList
-          data={searchedResults}
-          handleTagClick={handleTagClick}
-        />
-      ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-      )}
     </section>
   );
 };

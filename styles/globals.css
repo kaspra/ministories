@@ -130,7 +130,7 @@ input:focus {
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
-.custom_btn {
+.blue_btn {
   @apply bg-[#2563eb] rounded-full border border-white py-1.5 px-5 text-white flex items-center justify-center hover:bg-[#2564ebc7];
 }
 
@@ -159,11 +159,11 @@ input:focus {
 }
 
 .desc {
-  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl w-11/12;
+  @apply mt-5 text-xl font-light text-gray-600 sm:text-xl w-11/12 max-w-2xl;
 }
 
 .search_input {
-  @apply rounded-md border border-gray-200 bg-white font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:outline-none focus:ring-0 flex w-2/3 justify-start items-center gap-4 sm:w-full md:w-full;
+  @apply rounded-md border border-gray-200 bg-white font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:outline-none focus:ring-0 flex w-11/12 justify-start items-center gap-4 md:w-8/12;
 }
 
 .copy_btn {

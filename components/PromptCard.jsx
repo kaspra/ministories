@@ -38,8 +38,8 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
             <Image
               src={post.creator.image}
               alt="user_image"
-              width={40}
-              height={40}
+              width={34}
+              height={34}
               className="rounded-full object-contain"
             />
           )}
@@ -62,7 +62,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         </div>
       )}
       {post.title && (
-        <p className="my-2 font-satoshi text-gray-950 font-semibold text-center text-balance">
+        <p className="my-2 font-satoshi text-gray-950 font-semibold text-lg text-center text-balance">
           {post.title}
         </p>
       )}
@@ -73,7 +73,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         </p>
         {post.prompt.length > 200 && (
           <span
-            className="cursor-pointer font-semibold text-[14px]"
+            className="cursor-pointer font-medium text-[14px] md:font-semibold"
             onClick={() => ToggleFullView(post.tag)}
           >
             {isToggled.includes(post.tag) ? "Read less" : "Read more"}

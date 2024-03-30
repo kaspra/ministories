@@ -37,7 +37,7 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="/create-prompt" className="custom_btn">
+            <Link href="/create-prompt" className="blue_btn">
               Create Story
             </Link>
 
@@ -65,7 +65,7 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className="custom_btn"
+                  className="blue_btn"
                 >
                   Sign in
                 </button>
@@ -94,13 +94,20 @@ const Nav = () => {
                   className="mt-10 flex justify-end mr-16"
                 >
                   <Image
-                    src={"/assets/icons/menu.svg"}
+                    src={"/assets/icons/cross.png"}
                     width={36}
                     height={36}
                     alt="close_icon"
                   />
                 </div>
                 <div className="mt-52 flex flex-center flex-col gap-3">
+                  <Link
+                    className="dropdown_link text-center"
+                    href="/"
+                    onClick={() => setToggleDropdown(false)}
+                  >
+                    Home
+                  </Link>
                   <Link
                     className="dropdown_link text-center"
                     href="/profile"
@@ -121,7 +128,7 @@ const Nav = () => {
                       setToggleDropdown(false);
                       signOut();
                     }}
-                    className="mt-5 custom_btn text-2xl font-semibold"
+                    className="mt-5 blue_btn text-2xl font-semibold"
                   >
                     Sign Out
                   </button>
@@ -139,7 +146,7 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className="black_btn"
+                  className="blue_btn"
                 >
                   Sign in
                 </button>

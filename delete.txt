@@ -1,0 +1,9 @@
+-UI/UX mobile
+-UI/UX Desktop
+    Landing Page
+    Profile Page
+
+
+-Backend
+
+-Deployment
