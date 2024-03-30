@@ -2,6 +2,7 @@ import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import { ThemeModeScript } from "flowbite-react";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "MiniStories",
@@ -16,7 +17,7 @@ const RootLayout = ({ children }) => {
         <Provider>
           <main className="app">
             <Nav />
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           </main>
         </Provider>
       </body>
