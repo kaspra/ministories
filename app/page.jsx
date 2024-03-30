@@ -5,7 +5,7 @@ const Home = () => (
     <h1 className="head_text text-center sm:text-sm md:text-4xl">
       MiniStories{` `}
       <br className="max-md:hidden" />
-      <span className="orange_gradient text-center">
+      <span className="blue_gradient text-center">
         Unleash Your Imagination
       </span>
       <br className="max-md:hidden" />

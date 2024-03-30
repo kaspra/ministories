@@ -24,10 +24,10 @@ const Nav = () => {
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src={"/assets/images/logo.svg"}
+          src={"/assets/images/logo.png"}
           alt="logo"
-          width={30}
-          height={30}
+          width={40}
+          height={40}
           className="object-contain"
         />
         <p className="logo_text">MiniStories</p>
@@ -37,7 +37,7 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="/create-prompt" className="black_btn">
+            <Link href="/create-prompt" className="custom_btn">
               Create Story
             </Link>
 
@@ -65,7 +65,7 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className="black_btn"
+                  className="custom_btn"
                 >
                   Sign in
                 </button>
@@ -88,31 +88,44 @@ const Nav = () => {
             />
 
             {toggleDropdown && (
-              <div className="dropdown w-full flex justify-center items-center">
-                <Link
-                  className="dropdown_link text-center"
-                  href="/profile"
+              <div className="fixed top-0 left-2 w-full h-full flex flex-col bg-white z-10">
+                <div
                   onClick={() => setToggleDropdown(false)}
+                  className="mt-10 flex justify-end mr-16"
                 >
-                  My Profile
-                </Link>
-                <Link
-                  className="dropdown_link"
-                  href="/create-prompt"
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  Create Prompt
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut();
-                  }}
-                  className="mt-5 w-full black_btn"
-                >
-                  Sign Out
-                </button>
+                  <Image
+                    src={"/assets/icons/menu.svg"}
+                    width={36}
+                    height={36}
+                    alt="close_icon"
+                  />
+                </div>
+                <div className="mt-52 flex flex-center flex-col gap-3">
+                  <Link
+                    className="dropdown_link text-center"
+                    href="/profile"
+                    onClick={() => setToggleDropdown(false)}
+                  >
+                    My Profile
+                  </Link>
+                  <Link
+                    className="dropdown_link"
+                    href="/create-prompt"
+                    onClick={() => setToggleDropdown(false)}
+                  >
+                    Create Prompt
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setToggleDropdown(false);
+                      signOut();
+                    }}
+                    className="mt-5 custom_btn text-2xl font-semibold"
+                  >
+                    Sign Out
+                  </button>
+                </div>
               </div>
             )}
           </div>
