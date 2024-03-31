@@ -5,48 +5,47 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const EditPrompt = () => {
+const EditStory = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  const storyId = searchParams.get("id");
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({
     img: "",
     title: "",
-    prompt: "",
+    story: "",
     tag: "",
   });
 
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
+    const getStoryDetails = async () => {
+      const response = await fetch(`/api/story/${storyId}`);
       const data = await response.json();
-
       setPost({
         img: data.img,
         title: data.title,
-        prompt: data.prompt,
+        story: data.story,
         tag: data.tag,
       });
     };
 
-    if (promptId) getPromptDetails();
-  }, [promptId]);
+    if (storyId) getStoryDetails();
+  }, [storyId]);
 
-  const updatePrompt = async (e) => {
+  const updateStory = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (!promptId) return alert("Missing PromptId!");
+    if (!storyId) return alert("Missing StoryId!");
 
     try {
-      const response = await fetch(`/api/prompt/${promptId}`, {
+      const response = await fetch(`/api/story/${storyId}`, {
         method: "PATCH",
         body: JSON.stringify({
           img: post.img,
           title: post.title,
-          prompt: post.prompt,
+          story: post.story,
           tag: post.tag,
         }),
       });
@@ -55,7 +54,7 @@ const EditPrompt = () => {
         router.push("/");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -68,10 +67,10 @@ const EditPrompt = () => {
         post={post}
         setPost={setPost}
         submitting={submitting}
-        handleSubmit={updatePrompt}
+        handleSubmit={updateStory}
       />
     </Suspense>
   );
 };
 
-export default EditPrompt;
+export default EditStory;

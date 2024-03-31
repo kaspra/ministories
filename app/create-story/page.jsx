@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
 
-const CreatePrompt = () => {
+const CreateStory = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -14,22 +14,22 @@ const CreatePrompt = () => {
   const [post, setPost] = useState({
     img: "",
     title: "",
-    prompt: "",
+    story: "",
     tag: "",
   });
 
-  const createPrompt = async (e) => {
+  const createStory = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/prompt/new", {
+      const response = await fetch("/api/story/new", {
         method: "POST",
         body: JSON.stringify({
           userId: session?.user.id,
           img: post.img,
           title: post.title,
-          prompt: post.prompt,
+          story: post.story,
           tag: post.tag,
         }),
       });
@@ -38,7 +38,7 @@ const CreatePrompt = () => {
         router.push("/");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -50,9 +50,9 @@ const CreatePrompt = () => {
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={createPrompt}
+      handleSubmit={createStory}
     />
   );
 };
 
-export default CreatePrompt;
+export default CreateStory;

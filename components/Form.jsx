@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { FileInput, Label } from "flowbite-react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const ImgConvertor = (e) => {
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      setPost({ img: reader.result });
+      setPost({ ...post, img: reader.result });
     };
   };
 
@@ -66,8 +65,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
           <textarea
             rows="5"
-            value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
+            value={post.story}
+            onChange={(e) => setPost({ ...post, story: e.target.value })}
             placeholder="Write your storie here"
             required
             className="form_textarea"
@@ -99,7 +98,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             disabled={submitting}
             className="px-5 py-1.5 text-sm blue_btn rounded-full text-white"
           >
-            {submitting ? `${type}ing...` : type}
+            {submitting
+              ? type == "Create"
+                ? "Creating..."
+                : submitting && type == "Edit"
+                ? "Updating..."
+                : null
+              : type}
           </button>
         </div>
       </form>

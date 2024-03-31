@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
-const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
+const StoryCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -28,7 +28,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   };
 
   return (
-    <div className="prompt_card">
+    <div className="story_card">
       <div className="flex justify-between items-start gap-5">
         <div
           className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
@@ -69,9 +69,9 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
       <div className="my-2 font-satoshi text-sm text-gray-700">
         <p className={`${!isToggled.includes(post.id) && "line-clamp-5"}`}>
-          {post.prompt}
+          {post.story}
         </p>
-        {post.prompt.length > 200 && (
+        {post.story.length > 200 && (
           <span
             className="cursor-pointer font-medium text-[14px] md:font-semibold"
             onClick={() => ToggleFullView(post.id)}
@@ -107,4 +107,4 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   );
 };
 
-export default PromptCard;
+export default StoryCard;

@@ -169,10 +169,6 @@
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
 
-.prompt_layout {
-  @apply py-4 sm:grid sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3;
-}
-
 /* Feed Component */
 .feed {
   @apply mt-16 mx-auto w-full flex flex-col justify-center items-center gap-2;
@@ -204,8 +200,7 @@
   @apply text-2xl font-inter text-gray-700 hover:text-gray-500 font-semibold;
 }
 
-/* PromptCard Component */
-.prompt_card {
+.story_card {
   @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding px-5 py-4 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
 }
 

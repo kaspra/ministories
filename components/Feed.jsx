@@ -1,48 +1,17 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import PromptCard from "./PromptCard";
+import StoryCard from "./StoryCard";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
-const PromptCardList = ({ data, handleTagClick }) => {
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
-
+const StoryCardList = ({ data, handleTagClick }) => {
   return (
     <>
-      {width < 800 ? (
-        <ImageList variant="masonry" cols={1} gap={12}>
-          {data.map((post) => (
-            <ImageListItem key={post.id}>
-              <PromptCard
-                key={post.id}
-                post={post}
-                handleTagClick={handleTagClick}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      ) : (
+      <div className="hidden md:flex">
         <ImageList variant="masonry" cols={3} gap={12}>
           {data.map((post) => (
-            <ImageListItem key={post.id}>
-              <PromptCard
+            <ImageListItem key={post._id}>
+              <StoryCard
                 key={post.id}
                 post={post}
                 handleTagClick={handleTagClick}
@@ -50,7 +19,21 @@ const PromptCardList = ({ data, handleTagClick }) => {
             </ImageListItem>
           ))}
         </ImageList>
-      )}
+      </div>
+
+      <div className="flex flex-col md:hidden">
+        <ImageList variant="masonry" cols={1} gap={12}>
+          {data.map((post) => (
+            <ImageListItem key={post._id}>
+              <StoryCard
+                key={post.id}
+                post={post}
+                handleTagClick={handleTagClick}
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </div>
     </>
   );
 };
@@ -62,7 +45,7 @@ const Feed = () => {
   const [searchedResults, setSearchResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const response = await fetch("/api/story");
     const data = await response.json();
 
     setAllPosts(data);
@@ -72,7 +55,7 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
-  const filterPrompts = (searchText) => {
+  const filterstories = (searchText) => {
     const regex = new RegExp(searchText, "i");
 
     return allPosts.filter(
@@ -89,7 +72,7 @@ const Feed = () => {
 
     setSearchTimeout(
       setTimeout(() => {
-        const searchResults = filterPrompts(e.target.value);
+        const searchResults = filterstories(e.target.value);
         setSearchResults(searchResults);
       }, 500)
     );
@@ -98,7 +81,7 @@ const Feed = () => {
   const handleTagClick = (tagName) => {
     setSearchText(tagName);
 
-    const searchResult = filterPrompts(tagName);
+    const searchResult = filterstories(tagName);
     setSearchResults(searchResult);
   };
 
@@ -128,17 +111,17 @@ const Feed = () => {
               value={searchText}
               onChange={handleSearchChange}
               required
-              className="border-none placeholder:font-light placeholder:text-gray-400 w-full"
+              className="border-none placeholder:font-light placeholder:text-gray-400 w-full focus:border-none focus:outline-none"
             />
           </div>
           <div>
             {searchText ? (
-              <PromptCardList
+              <StoryCardList
                 data={searchedResults}
                 handleTagClick={handleTagClick}
               />
             ) : (
-              <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+              <StoryCardList data={allPosts} handleTagClick={handleTagClick} />
             )}
           </div>
         </div>
