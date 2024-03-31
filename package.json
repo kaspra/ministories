@@ -1,5 +1,5 @@
 {
-  "name": "prompter",
+  "name": "ministories",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.12",
     "@mui/material": "^5.15.14",
+    "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.5",
     "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",

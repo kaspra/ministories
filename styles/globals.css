@@ -56,11 +56,6 @@
   }
 }
 
-input:focus {
-  outline: none;
-  border: none;
-}
-
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -143,7 +138,7 @@ input:focus {
 }
 
 .head_text {
-  @apply mt-5 sm:text-5xl xl:text-5xl md:text-5xl text-5xl font-extrabold leading-[1.15] text-black;
+  @apply mt-5 sm:text-5xl xl:text-5xl md:text-5xl text-3xl font-extrabold leading-[1.15] text-black;
 }
 
 .orange_gradient {
@@ -163,7 +158,7 @@ input:focus {
 }
 
 .search_input {
-  @apply rounded-md border border-gray-200 bg-white font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:outline-none focus:ring-0 flex w-11/12 justify-start items-center gap-4 md:w-8/12;
+  @apply rounded-md border border-gray-200 bg-white font-satoshi pl-4 pr-1 md:pl-5 md:pr-12 text-sm shadow-lg font-medium focus:outline-none focus:ring-0 flex w-11/12 justify-start items-center md:gap-4 md:w-8/12 py-2 gap-3;
 }
 
 .copy_btn {
@@ -185,11 +180,15 @@ input:focus {
 
 /* Form Component */
 .form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-800 outline-0 focus:outline-none focus:border-none;
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-800 outline-0 focus:border focus:border-[#2563eb] border border-gray-400;
 }
 
 .form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-800 outline-0;
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-800 outline-0 border border-gray-400 focus:border focus:border-[#2563eb];
+}
+
+.form_file {
+  @apply border border-gray-400 py-2 px-2 rounded-lg w-full file:cursor-pointer file:mr-3 file:rounded-md file:border-none file:px-2 file:py-1 file:text-sm file:font-normal file:bg-[#2563eb] file:text-white;
 }
 
 /* Nav Component */

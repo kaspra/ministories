@@ -20,7 +20,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   };
 
   return (
-    <section className="w-full max-w-full flex-start flex-col">
+    <section className="w-full max-w-full flex-start flex-col mt-6">
       <h1 className="head_text text-left px-4">
         <span className="blue_gradient">{type} Post</span>
       </h1>
@@ -39,10 +39,11 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               Upload Storie Pic
             </span>
           </div>
-          <FileInput
-            id="file-upload"
+          <input
+            type="file"
             accept="image/*"
             onChange={ImgConvertor}
+            className="form_file"
           />
         </label>
         <label>

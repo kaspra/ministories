@@ -62,21 +62,21 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         </div>
       )}
       {post.title && (
-        <p className="my-2 font-satoshi text-gray-950 font-semibold text-lg text-center text-balance">
+        <p className="my-2 font-satoshi text-gray-950 font-semibold text-xl md:text-lg text-center text-balance">
           {post.title}
         </p>
       )}
 
       <div className="my-2 font-satoshi text-sm text-gray-700">
-        <p className={`${!isToggled.includes(post.tag) && "line-clamp-5"}`}>
+        <p className={`${!isToggled.includes(post.id) && "line-clamp-5"}`}>
           {post.prompt}
         </p>
         {post.prompt.length > 200 && (
           <span
             className="cursor-pointer font-medium text-[14px] md:font-semibold"
-            onClick={() => ToggleFullView(post.tag)}
+            onClick={() => ToggleFullView(post.id)}
           >
-            {isToggled.includes(post.tag) ? "Read less" : "Read more"}
+            {isToggled.includes(post.id) ? "Read less" : "Read more"}
           </span>
         )}
       </div>

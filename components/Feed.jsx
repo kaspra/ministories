@@ -29,7 +29,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
       {width < 800 ? (
         <ImageList variant="masonry" cols={1} gap={12}>
           {data.map((post) => (
-            <ImageListItem key={post.tag}>
+            <ImageListItem key={post.id}>
               <PromptCard
                 key={post.id}
                 post={post}
@@ -41,7 +41,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
       ) : (
         <ImageList variant="masonry" cols={3} gap={12}>
           {data.map((post) => (
-            <ImageListItem key={post.tag}>
+            <ImageListItem key={post.id}>
               <PromptCard
                 key={post.id}
                 post={post}
@@ -105,8 +105,8 @@ const Feed = () => {
   return (
     <section className="feed">
       <form className="relative w-full flex-center flex-col">
-        <div className="flex w-full justify-center items-center mb-16">
-          <div className="search_input">
+        <div className="flex w-full justify-center items-center flex-col">
+          <div className="search_input mb-16">
             <svg
               className="w-4 h-4 text-gray-500"
               aria-hidden="true"
@@ -131,15 +131,17 @@ const Feed = () => {
               className="border-none placeholder:font-light placeholder:text-gray-400 w-full"
             />
           </div>
+          <div>
+            {searchText ? (
+              <PromptCardList
+                data={searchedResults}
+                handleTagClick={handleTagClick}
+              />
+            ) : (
+              <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+            )}
+          </div>
         </div>
-        {searchText ? (
-          <PromptCardList
-            data={searchedResults}
-            handleTagClick={handleTagClick}
-          />
-        ) : (
-          <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-        )}
       </form>
     </section>
   );

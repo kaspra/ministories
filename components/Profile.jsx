@@ -22,7 +22,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
     }
   }, []);
   return (
-    <section className="w-full px-5">
+    <section className="w-full px-1 md:px-5 mt-6">
       <div className="w-full text-left">
         <h1 className="head_text text-left">
           <span className="blue_gradient">{name} Profile</span>
@@ -33,7 +33,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
         {width < 450 ? (
           <ImageList variant="masonry" cols={1} gap={12}>
             {data.map((post) => (
-              <ImageListItem key={post.tag}>
+              <ImageListItem key={post._id}>
                 <PromptCard
                   key={post._id}
                   post={post}
@@ -46,7 +46,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
         ) : (
           <ImageList variant="masonry" cols={3} gap={12}>
             {data.map((post) => (
-              <ImageListItem key={post.tag}>
+              <ImageListItem key={post._id}>
                 <PromptCard
                   key={post._id}
                   post={post}
