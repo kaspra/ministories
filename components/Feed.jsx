@@ -4,36 +4,43 @@ import StoryCard from "./StoryCard";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 
+import IsMobile from "../hooks/IsMobile";
+import Loader from "./Loader";
+
 const StoryCardList = ({ data, handleTagClick }) => {
+  const isMobile = IsMobile();
+
   return (
     <>
-      <div className="hidden md:flex">
-        <ImageList variant="masonry" cols={3} gap={12}>
-          {data.map((post) => (
-            <ImageListItem key={post._id}>
-              <StoryCard
-                key={post.id}
-                post={post}
-                handleTagClick={handleTagClick}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </div>
-
-      <div className="flex flex-col md:hidden">
-        <ImageList variant="masonry" cols={1} gap={12}>
-          {data.map((post) => (
-            <ImageListItem key={post._id}>
-              <StoryCard
-                key={post.id}
-                post={post}
-                handleTagClick={handleTagClick}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </div>
+      {!isMobile ? (
+        <div className="md:flex">
+          <ImageList variant="masonry" cols={3} gap={12}>
+            {data.map((post) => (
+              <ImageListItem key={post._id}>
+                <StoryCard
+                  key={post.id}
+                  post={post}
+                  handleTagClick={handleTagClick}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </div>
+      ) : (
+        <div className="flex flex-col">
+          <ImageList variant="masonry" cols={1} gap={12}>
+            {data.map((post) => (
+              <ImageListItem key={post._id}>
+                <StoryCard
+                  key={post.id}
+                  post={post}
+                  handleTagClick={handleTagClick}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </div>
+      )}
     </>
   );
 };
@@ -43,12 +50,15 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/story");
+    setLoading(true);
+    const response = await fetch("api/story");
     const data = await response.json();
 
     setAllPosts(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -115,7 +125,9 @@ const Feed = () => {
             />
           </div>
           <div>
-            {searchText ? (
+            {loading ? (
+              <Loader />
+            ) : searchText ? (
               <StoryCardList
                 data={searchedResults}
                 handleTagClick={handleTagClick}

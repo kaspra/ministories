@@ -1,7 +1,15 @@
+import Image from "next/image";
+
 const Loader = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+    <div className="flex justify-center items-center h-full">
+      <Image
+        src={"assets/icons/loader.svg"}
+        width={50}
+        height={50}
+        alt="loader"
+        className="object-contain"
+      />
     </div>
   );
 };
